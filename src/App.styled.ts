@@ -1,13 +1,7 @@
 import { css } from '@emotion/react';
 import 'modern-normalize/modern-normalize.css';
 import { createGlobalStyle } from "styled-components";
-import MulishBold from "./assets/fonts/Mulish-Bold.ttf"
-import MulishMedium from "./assets/fonts/Mulish-Medium.ttf"
-import PoppinsMedium from "./assets/fonts/Poppins-Medium.ttf"
-import PoppinsRegular from "./assets/fonts/Poppins-Regular.ttf"
-import Helvetica from "./assets/fonts/Helvetica.ttf"
-import Inter from "./assets/fonts/Inter_18pt-Regular.ttf"
-import Roboto from "./assets/fonts/RobotoFlex-VariableFont_GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf"
+
 //! src: url(${Roboto}) format('truetype');
 import styled from 'styled-components';
 
@@ -71,38 +65,7 @@ const GlobalStyles = createGlobalStyle`
   --font19: "Bob Sponge", sans-serif;
 }
 }
-@font-face {
-  font-family: 'Roboto Flex';
-  // src: url(${Roboto}) format('truetype');
-}
 
-@font-face {
-  font-family: 'MulishBold';
-  src: url(${MulishBold}) format('truetype');
-}
-  @font-face {
-  font-family: 'MulishMedium';
-  src: url(${MulishMedium}) format('truetype');
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url(${Helvetica}) format('truetype');
-}
-
-@font-face {
-  font-family: 'PoppinsMedium';
-  src: url(${PoppinsMedium}) format('truetype');
-}
-  @font-face {
-  font-family: 'PoppinsRegular';
-  src: url(${PoppinsRegular}) format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url(${Inter}) format('truetype');
-}
 
 @keyframes move {
   from {
