@@ -48,11 +48,28 @@ const GlobalStyles = createGlobalStyle`
   --toastify-color-error: #ff4d4f;
   --toastify-font-family: var(--font-family);
   // ! fonts 
-    --font-family: "Roboto Flex", sans-serif;
-  --second-family: "Mulish", sans-serif;
-  --third-family: "Helvetica", sans-serif;
+ :root {
+  --font-family: "Abhaya Libre", sans-serif;
+  --second-family: "Inter", sans-serif;
+  --third-family: "SF Pro", sans-serif;
   --font3: "Poppins", sans-serif;
-  --font4: "Inter", sans-serif;
+  --font4: "IBM Plex Mono", sans-serif;
+  --font5: "Anek Odia", sans-serif;
+  --font6: "Patrick Hand", sans-serif;
+  --font7: "SF Pro Display", sans-serif;
+  --font8: "Neue Montreal", sans-serif;
+  --font9: "Trebuchet MS", sans-serif;
+  --font10: "Eurostile Extended", sans-serif;
+  --font11: "Rajdhani", sans-serif;
+  --font12: "Raleway", sans-serif;
+  --font13: "Mont", sans-serif;
+  --font14: "Plus Jakarta Sans", sans-serif;
+  --font15: "Some Time Later", sans-serif;
+  --font16: "Komika Axis", sans-serif;
+  --font17: "PIXY", sans-serif;
+  --font18: "Pokemon Solid", sans-serif;
+  --font19: "Bob Sponge", sans-serif;
+}
 }
 @font-face {
   font-family: 'Roboto Flex';
