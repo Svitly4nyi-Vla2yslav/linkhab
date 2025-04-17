@@ -1,0 +1,284 @@
+{
+  "hero": {
+    "developmentAgency": "Development agency",
+    "title": "Modern IT solutions for your business",
+    "description": "We develop powerful CRM systems, mobile applications, and unique IT products that help you grow and automate business processes.",
+    "expertiseTitle": "Our Expertise"
+  },
+  "expertise": {
+    "tailored": "Tailored Solutions",
+    "scalable": "Scalable Technologies",
+    "proven": "Proven Expertise"
+  },
+  "menu": {
+    "services": "Service",
+    "caseStudies": "Case Studies",
+    "faq": "FAQ",
+    "contact": "Contact Us"
+  },
+  "buttons": {
+    "contact": "Contact Us",
+    "getInTouch": "Get in Touch"
+  },
+  "contactForm": {
+    "title": "Select your budget range",
+    "budgetOptions": {
+      "upTo10k": "Up to $10K",
+      "10kTo30k": "$10K-$30K",
+      "30kPlus": "$30K+"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "contactMethod": "Way to Connect",
+      "contactPlaceholder": {
+        "email": "Your email",
+        "phone": "Your phone number",
+        "whatsapp": "Your WhatsApp",
+        "telegram": "Your Telegram",
+        "default": "Choose a contact method..."
+      },
+      "description": "Description",
+      "fileUpload": "Click here to upload or drop files here",
+      "filePreview": "Preview",
+      "fileRemove": "×"
+    },
+    "methods": {
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram"
+    },
+    "submitButton": {
+      "default": "Submit",
+      "uploading": "Uploading..."
+    },
+    "errors": {
+      "firstName": "First name is required",
+      "lastName": "Last name is required",
+      "budget": "Please select budget range",
+      "contactMethod": "Please select contact method",
+      "contact": {
+        "required": "Contact information is required",
+        "email": "Please enter valid email",
+        "phone": "Please enter valid phone number"
+      },
+      "description": "Description is required",
+      "fileTooLarge": "File  is too large (max 50MB)",
+      "fileNotUploaded": "File is not uploaded yet. Please submit the form first.",
+      "submitError": "Error submitting form. Please try again.",
+      "serverError": "Server configuration error. Please contact support."
+    }
+  },
+  "contactUs": {
+    "sectionTitle": "Contact Us",
+    "mainHeading": "Let's Start Building Your Next Big Idea"
+  },
+  "successModal": {
+    "title": "Thank you for reaching out!",
+    "message": "We've received your message and will get back to you shortly.",
+    "buttonText": "Back to Home"
+  },
+  "faq": {
+    "sectionTitle": "FAQ",
+    "mainHeading": "Everything You Need to Know Before Getting Started",
+    "questions": {
+      "q1": {
+        "question": "What services do you offer?",
+        "answer": "Yes, new mockups are released every month.",
+        "answer2": "We specialize in developing CRM systems, mobile applications, and custom IT solutions. We also provide database creation, server setup on AWS, and UI/UX design."
+      },
+      "q2": {
+        "question": "How long does it take to complete a project?",
+        "answer": "Yes, timelines vary depending on the project scope.",
+        "answer2": "Simple projects can take 1–2 weeks, while more complex systems like CRM or mobile apps may take 1–2 months."
+      },
+      "q3": {
+        "question": "Can I customize the features of my CRM system or application?",
+        "answer": "Yes, all features can be tailored to your specific business needs.",
+        "answer2": "We develop fully custom logic, dashboards, and workflows based on your requirements."
+      },
+      "q4": {
+        "question": "Do you provide ongoing support after project completion?",
+        "answer": "Yes, we offer maintenance and updates after launch.",
+        "answer2": "This includes bug fixing, performance optimization, and feature upgrades upon request."
+      },
+      "q5": {
+        "question": "How much do your services cost?",
+        "answer": "Yes, prices depend on the complexity of the project.",
+        "answer2": "Basic websites start from €500, while custom systems like CRMs or apps are estimated individually after a consultation."
+      }
+    }
+  },
+  "footer": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "policies": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "websiteVisitors": "Website Visitors",
+      "content": "Sabsus.com (\"SABSUS\") is a digital agency that builds advanced CRM systems, mobile apps, and custom IT solutions for businesses. We respect your privacy and uphold the following core principles:\n\nWe don’t ask for personal information unless we truly need it\n\nWe don’t share your information except to comply with the law\n\nWe don’t store personal information unless required for functionality or legal reasons\n\nLike most website operators, SABSUS collects non-personally identifying information such as browser type, language preference, referring website, and the date and time of each request. Our goal is to better understand how visitors use our website and improve user experience. SABSUS may analyze visitor behavior in aggregate (analytics) but does not use this data to personally identify you. Potentially personally identifying information (such as IP address) is only accessible to employees and contractors on a need-to-know basis."
+    },
+    "terms": {
+      "title": "📄 Terms of Service",
+      "content": "Use of Website\n\nThese terms govern access to and use of sabsus.com.\n\n1. Submitted Data\n\nIf you use our contact forms, you're responsible for the accuracy of the data you submit. Submissions must not contain false, malicious, or unauthorized content.\n\n2. Intellectual Property\n\nAll content on the SABSUS website, including visuals, text, and design, is either owned by SABSUS or used with proper permissions. No rights are transferred to users unless explicitly stated.\n\n3. Changes\n\nWe may update these terms at any time. Continued use of the site constitutes acceptance of the updated terms.\n\n4. Termination\n\nWe reserve the right to restrict or terminate access to any part of the website at our discretion, especially in cases of misuse or violation of these terms."
+    },
+    "cookie": {
+      "title": "🍪 Cookie Policy",
+      "cookies": "Cookies",
+      "content": "What Are Cookies?\n\nA cookie is a small file stored on your device by your browser. SABSUS uses cookies to:\n\n📈 Analyze website traffic (e.g., Google Analytics, Hotjar)\n\n⚙️ Improve website performance\n\n👤 Remember user preferences\n\nYou may disable cookies in your browser settings. However, some features of the website may not function properly if cookies are disabled.\n\n🔁 Changes to This Policy\n\nWe may update these policies occasionally. We recommend reviewing this page periodically. Continued use of the site after changes means you accept the revised terms."
+    }
+  },
+  "services": {
+    "sectionTitle": "Our Services",
+    "mainHeading": "Comprehensive IT solutions tailored to meet your business needs",
+    "cards": {
+      "crm": {
+        "title": "Custom CRM Development",
+        "description": "Streamline operations with CRM systems tailored to your workflows."
+      },
+      "mobile": {
+        "title": "Mobile Application Development",
+        "description": "Create mobile apps that deliver exceptional experiences and grow your business."
+      },
+      "it": {
+        "title": "Custom IT Solutions",
+        "description": "Get custom IT solutions to solve challenges and boost efficiency.",
+        "customSolution": "Custom Solution",
+        "customDescription": "Tailored software development to address unique business challenges and improve operational efficiency",
+        "features": {
+          "fullDevelopment": "Full Development",
+          "customFeatures": "Custom Features",
+          "integration": "Integration"
+        }
+      }
+    }
+  },
+  "ourWork": {
+    "sectionTitle": "Our Work",
+    "mainHeading": "Discover our projects showcasing expertise in custom IT solutions",
+    "clientLabel": "Client",
+    "imageAlt": "Project image",
+    "defaults": {
+      "noTitle": "No title",
+      "noDescription": "No description",
+      "caseStudyTitle": "Case Study"
+    },
+    "errors": {
+      "loadProjects": "Error loading projects:",
+      "loadCaseStudy": "Error loading case study:",
+      "imageLoad": "Failed to load image: {url}"
+    }
+  },
+  "about": {
+    "sectionTitle": "What We Do",
+    "mainHeading": "We create IT solutions, from CRM to custom apps, to streamline your business",
+    "icons": {
+      "computer": "Computer icon",
+      "dollar": "Dollar sign",
+      "chart": "Chart",
+      "percent": "Percent",
+      "list": "List",
+      "table": "Table",
+      "warning": "Warning",
+      "point": "Point",
+      "delete": "Delete",
+      "edit": "Edit"
+    },
+    "crm": {
+      "title": "Comprehensive CRM Systems",
+      "description": "Develop robust CRM systems tailored to your business needs. Automate workflows and deliver a seamless customer experience."
+    },
+    "deposit": {
+      "total": "Total Deposit"
+    },
+    "expenses": {
+      "total": "Total Expenses"
+    },
+    "projects": {
+      "all": "All Projects",
+      "completed": "Completed",
+      "overview": {
+        "title": "Projects Overview"
+      },
+      "filter": {
+        "week": "Week",
+        "month": "Month",
+        "year": "Year",
+        "all": "All"
+      },
+      "status": {
+        "completed": "Completed",
+        "pending": "Pending",
+        "notStarted": "Not Started"
+      }
+    },
+    "tasks": {
+      "total": "Total Tasks",
+      "unfinished": "Tasks Not Finished"
+    },
+    "time": {
+      "week": "Week",
+      "month": "Month",
+      "year": "Year",
+      "all": "All"
+    },
+    "todo": {
+      "title": "My To Do Items",
+      "viewAll": "View All + Add To Do",
+      "latest": "Latest to do's",
+      "latestFinished": "Latest finished to do's",
+      "taskExample": "Complete this projects Monday"
+    }
+  },
+  "card": {
+    "icons": {
+      "unicorn": "Unicorn icon",
+      "background": "Background image",
+      "phone": "Phone icon",
+      "code": "Code icon",
+      "lamp": "Lamp icon",
+      "zip": "Zip icon",
+      "engine": "Engine icon",
+      "lampSmall": "Small lamp icon"
+    },
+    "sections": {
+      "standardApps": {
+        "title": "Standard Applications",
+        "description": "Create intuitive, industry-standard applications to streamline your business operations."
+      },
+      "customSolutions": {
+        "title": "Custom IT Solutions",
+        "description": "Transform your ideas into reality with our IT solutions tailored to your challenges."
+      },
+      "design": {
+        "title": "Exceptional UX/UI Design",
+        "description": "Create designs that enhance experience and drive engagement."
+      },
+      "packages": {
+        "title": "Ready-to-Launch Packages",
+        "description": "Select from flexible packages designed to meet your business goals."
+      }
+    },
+    "packages": {
+      "standard": {
+        "title": "Standard CRM Package",
+        "description": "Includes 10 screens with essential CRM features to streamline operations."
+      },
+      "custom": {
+        "title": "Customizable IT Suite",
+        "description": "IT solutions tailored to your needs, from backend to frontend."
+      },
+      "full": {
+        "title": "Full Development Package",
+        "description": "Package covering server setup, database integration, and UI/UX design."
+      }
+    }
+  },
+  "cookies": {
+    "message": "We use cookies for analytics",
+    "acceptButton": "Got it, accept"
+  }
+}
