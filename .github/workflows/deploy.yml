@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
 env:
-  VITE_API_TEST: ${{secrets.VITE_API_TEST}}
   FIREBASE_SERVICE_ACCOUNT: ${{secrets.FIREBASE_SERVICE_ACCOUNT}}
 
 jobs:
