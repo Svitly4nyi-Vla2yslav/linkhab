@@ -1,10 +1,10 @@
-name: Build and deploy to GitHub Pages
+name: Build and deploy to GitHub Pages and Firebase
 
 on:
   push:
     branches: [main]
 env:
-  VITE_API_TEST: ${{secrets.VITE_API_TEST}}
+  FIREBASE_SERVICE_ACCOUNT: ${{secrets.FIREBASE_SERVICE_ACCOUNT}}
 
 jobs:
   build-and-deploy:
@@ -13,14 +13,30 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Install, build 🔧
-        run: |
-          npm install
-          npm run build
-          cp ./dist/index.html ./dist/404.html
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-      - name: Deploy 🚀
+      - name: Install dependencies 🔧
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Prepare for GitHub Pages
+        run: cp ./dist/index.html ./dist/404.html
+
+      - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
           folder: dist
+
+      - name: Deploy to Firebase
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" | base64 --decode > serviceAccountKey.json
+          # Тут додайте команди для деплою на Firebase, наприклад:
+          # npm install -g firebase-tools
+          # firebase deploy --token $FIREBASE_TOKEN
+          rm serviceAccountKey.json
