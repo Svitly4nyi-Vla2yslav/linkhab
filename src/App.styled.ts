@@ -1,47 +1,13 @@
-import { css } from '@emotion/react';
 import 'modern-normalize/modern-normalize.css';
 import { createGlobalStyle } from "styled-components";
 
 //! src: url(${Roboto}) format('truetype');
-import styled from 'styled-components';
 
-export const GlobalContainer = styled.div`
-  // position: relative;
-  z-index: 1;
-  
-  #tsparticles {
-    // position: fixed;
-      z-index: 0 !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-`;
+
 
 const GlobalStyles = createGlobalStyle`
 
-:root {
-	--white: #fff;
-	--substrate: #0e0e0e;
-	--line: #212121;
-	--black-500: #0a0a0a;
-	--black-400: #141414;
-	--black-350: rgba(0, 0, 0, 0.35);
-	--black-350: #1e1e1e;
-	--black-500: rgba(24, 24, 27, 0.5);
-	--orange-500: #fe5b14;
-	--gray-500: rgba(161, 161, 170, 0.8);
-	--white-0.2: rgba(255, 255, 255, 0);
-	--blue-200: rgba(212, 228, 254, 0.2);
-	--red-50: rgba(255, 94, 94, 0.05);
-	--red-500: #f00;
-	--gray-800: rgba(132, 132, 139, 0.8);
-    --toastify-color-success: #FE5B14;
-  --toastify-color-error: #ff4d4f;
-  --toastify-font-family: var(--font-family);
-  // ! fonts 
+
  :root {
   --font-family: "Abhaya Libre", sans-serif;
   --second-family: "Inter", sans-serif;
@@ -64,165 +30,112 @@ const GlobalStyles = createGlobalStyle`
   --font18: "Pokemon Solid", sans-serif;
   --font19: "Bob Sponge", sans-serif;
 }
-}
 
 
-@keyframes move {
-  from {
-    tranform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
 
   * {
-    // margin: 0;
-    // padding: 0;
-    // box-sizing: border-box;
-    // --v1: calc(max(9vw, 11vh));
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-     word-wrap: break-word;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
-    html, body {
-  height: -webkit-fill-available;
-  font-smoothing: antialiased;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
 
-body::-webkit-scrollbar {
-  display: none;
-}
-  
+  html {
+    font-size: 14px;
+    @media (min-width: 428px) {
+      font-size: 16px;
+    }
+    height: 100%;
+    overscroll-behavior: contain;
+  }
+
   body {
-    font-family: 'Roboto Flex', sans-serif;
-    background-color: black;
-    color: #efedee;
-  transition-duration: 300ms;
-
+    font-family: var(--main-font);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
   }
 
+  /* ======= Типографія ======= */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title-font);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ======= Інтерактивні елементи ======= */
   button {
     cursor: pointer;
-    transition-duration: 300ms;
-  }
-  button:focus,
-  button:hover {
-    // background-color: lightgray; 
-    // box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.6); 
+    user-select: none;
+    background: none;
+    border: none;
+    padding: 0;
+    touch-action: manipulation;
   }
 
   a {
-    cursor: pointer;
-    transition-duration: 300ms;
+    color: inherit;
     text-decoration: none;
-    color: #FFFFFF;
-  }
- 
-
-  img {
-   cursor: default
-    transition-duration: 300ms;
+    cursor: pointer;
   }
 
-.Toastify__toast-container {
-  z-index: 999999 !important;
-  position: fixed !important;
-}
-
-.Toastify__toast {
-  pointer-events: auto !important;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-#toast-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 10000;
-}
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
- {
-  font-family: 'Roboto Flex';
-    margin: 0;
-    padding: 0;
-    z-index: 0;
+  /* ======= Медіа ======= */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: middle;
   }
 
-    input, textarea, select {
-    cursor: text; // 👈 логічно для полів вводу
-  }
-
-    label {
-    cursor: pointer; // 👈 якщо прив’язаний до input[type="checkbox"] або radio
-  }
-
-  svg:hover,
-  .icon:hover {
-    cursor: pointer; // 👈 коли користувач наводить на SVG-іконки
-  }
-
-  [disabled] {
-    cursor: not-allowed; // 👈 якщо елемент неактивний
-  }
-
-  .draggable {
-    cursor: grab; // 👈 наприклад, для перетягування
-  }
-
-  .draggable:active {
-    cursor: grabbing;
-  }
-
-// ! AOS Fixes */
-// [data-aos] {
-//   /* Фікс для мобільних */
-//   @media (max-width: 767px) {
-//     transform: none !important;
-//     opacity: 1 !important;
-//     transition: none !important;
-//   }
-  
-//   /* Скидання стилів після анімації */
-//   &.aos-animate {
-//     transform: none !important;
-//     animation-fill-mode: forwards;
-//   }
-// }
-  ul,
-  li {
+  /* ======= Списки ======= */
+  ul, ol {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  cursor: default
+  /* ======= Форми ======= */
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    appearance: none;
+    border-radius: 0;
   }
 
-  html {
-    // overflow-x: hidden;
-    scroll-behavior: smooth;
-   
-    }
+  /* ======= Toast-сповіщення ======= */
+  .Toastify__toast-container {
+    width: 100vw;
+    padding: 0 16px;
+    left: 0;
+    bottom: 0;
+    top: auto;
+  }
 
+  .Toastify__toast {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    min-height: 48px;
+  }
+
+  /* ======= Анімації ======= */
+  @keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
 `;
-
 
 export default GlobalStyles;

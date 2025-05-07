@@ -1,9 +1,11 @@
-import GlobalStyles, { GlobalContainer } from './App.styled';
+import GlobalStyles from './App.styled';
+import ContainerWidget from './components/ContainerWidget/ContainerWidget';
 const App = () => {
-  return (
-    <GlobalContainer>
+  return (<>
+    <ContainerWidget/>
       <GlobalStyles />
-    </GlobalContainer>
+
+    </>
   );
 };
 
