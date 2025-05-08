@@ -1,11 +1,18 @@
-import GlobalStyles from './App.styled';
-import ContainerWidget from './components/ContainerWidget/ContainerWidget';
-const App = () => {
-  return (<>
-    <ContainerWidget/>
-      <GlobalStyles />
+import { ThemeProvider } from "styled-components";
+import ContainerWidget from "./components/ContainerWidget/ContainerWidget";
+import GlobalStyles from "./App.styled";
+import { useTheme } from "./lib/useTheme";
 
-    </>
+const App = () => {
+  const { theme, loading } = useTheme('current-user-id');
+
+  if (loading) return <div>Loading theme...</div>;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles theme={theme} />
+      <ContainerWidget />
+    </ThemeProvider>
   );
 };
 

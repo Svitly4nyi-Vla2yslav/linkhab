@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
-// import { db } from 'path/to/your/firebaseConfig';
-import styled from 'styled-components';
-import { db } from '../../firabase';
+// ContainerWidget.tsx
+import { useTheme } from '../../lib/useTheme';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import HomeDefaultDarkTheme from './HomeDefaultDarkTheme';
 
-// Стилізований компонент з пропсом для кольору
-const StyledContainer = styled.div<{ bgColor: string }>`
-  height: 100%;
-  width: 375px;
-  margin: 0 auto;
-  background: ${({ bgColor }) => bgColor};
-`;
 
 const ContainerWidget: React.FC = () => {
-  const [bgColor, setBgColor] = useState('#090909'); // Значення за замовчуванням
+  const { theme, loading } = useTheme('current-user-id');
 
-  useEffect(() => {
-    const fetchTheme = async () => {
-      try {
-        const themeDoc = await getDoc(doc(db, 'themeSettings', 'defaultTheme'));
-        if (themeDoc.exists()) {
-          setBgColor(themeDoc.data().containerBg);
-        }
-      } catch (error) {
-        console.error('Error fetching theme:', error);
-      }
-    };
+  if (loading) return <div>Loading...</div>;
 
-    fetchTheme();
-  }, []);
-
-  return <StyledContainer bgColor={bgColor} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <HomeDefaultDarkTheme />
+    </ThemeProvider>
+  );
 };
 
 export default ContainerWidget;
