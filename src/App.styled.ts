@@ -21,7 +21,8 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   }
 
   * {
-    margin: 0;
+  // border: 1px solid red;
+    margin: 0 ;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -73,7 +74,6 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     }
   }
 
-  /* Посилання */
   a {
     color: var(--primary-color);
     text-decoration: ${({ theme }) => theme.linkDecoration};

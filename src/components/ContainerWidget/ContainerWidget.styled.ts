@@ -9,18 +9,19 @@ export const MainContainer = styled.div`
   background: ${({ theme }) => theme.colors.background || '#090909'};
   min-height: 100vh;
   width: 393px;
-  max-width: 425px; 
-  
- 
   margin: 0 auto;
   position: relative;
+    overflow-x: auto; /* або hidden, якщо хочете повністю приховати скролл */
+  width: 100%;
+  scrollbar-width: none; /* для Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* для Chrome/Safari */
+  }
+
 `;
-
-
 
 export const ProfileSection = styled.div`
   width: 100%;
-  max-width: 375px;
   position: relative;
   margin-bottom: 180px;
 `;
@@ -29,16 +30,13 @@ export const ProfileCover = styled.div`
   position: relative;
   width: 100%;
   height: 462px;
-  
 border-radius: 0 0 24px 24px;
-width: 393px;
 height: 280px;
 `;
 
 export const CoverImage = styled.img`
   position: absolute;
   top: 0;
-  left: -9px;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -48,7 +46,7 @@ export const CoverImage = styled.img`
 export const ProfileCard = styled.div`
   position: absolute;
   top: 127px;
-  left: 48%;
+  left: 50%;
   transform: translateX(-50%);
   width: 345px;
   padding: 40px 24px;
@@ -218,11 +216,6 @@ export const Container = styled.div`
 width: 100%;
 `;
 
-export const ArtGallery = styled.div`
-  display: flex;
-  gap: 16px;
-`;
-
 export const ArtItem = styled.div`
 border-radius: 20px;
   display: flex;
@@ -304,7 +297,7 @@ export const SocialLink = styled.a`
   align-items: center;
   justify-content: space-between;
   padding: 12px 32px 12px 16px;
-  width: 347px;
+max-width: 100%;
   height: 64px;
   border: 1px solid ${({ theme }) => theme.colors.borderSecondary || '#656565'};
   background: rgba(39, 38, 40, 0.7);
@@ -312,6 +305,8 @@ export const SocialLink = styled.a`
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  gap: 10px;
+    max-width: 345px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
@@ -400,12 +395,133 @@ export const SocialArrow = styled.div`
   }
 `;
 
-export const PersonalBanner = styled.img`
-  border-radius: 8px;
-  width: 353px;
-  height: 80px;
-  object-fit: cover;
+export const PersonalBanner = styled.div`
+    position: relative; /* Додаємо для позиціонування псевдоелемента */
+    display: flex;
+    border-radius: 20px;
+    padding: 16px;
+    width: 345px;
+    height: 192px;
+    background: #fff;
+    backdrop-filter: blur(50px);
+    box-shadow: inset 0 1px 0 0 #fff;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    overflow: hidden; /* Ховаємо виступаючі частини псевдоелемента */
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%; /* Займає половину батьківського компонента */
+        height: 100%;
+        background: linear-gradient(
+            318deg,
+            rgba(255, 0, 0, 0.85) 0%,
+            rgba(255, 0, 98, 0) 100%
+        );
+        filter: blur(20px); /* Робимо ефект розмиття */
+        z-index: 0; /* Поміщаємо під основний контент */
+    }
 `;
+
+/* Додамо z-index до всіх вмістих елементів, щоб вони були над плямою */
+export const BannerContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 1;
+`;
+
+export const BannerContainer1 = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 1;
+`;
+
+/* Решта стилів залишаються без змін */
+export const BannerItem = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 1;
+`;
+
+export const DataContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 1;
+
+    p {
+        font-family: var(--font7);
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 100%;
+        letter-spacing: 0.01em;
+        text-align: center;
+        color: #000;
+    }
+    span {
+        font-family: var(--font7);
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 100%;
+        letter-spacing: 0.01em;
+        text-align: center;
+        color: #000;
+    }
+`;
+
+/* Інші стилі без змін */
+export const FreeEntrance = styled.p`
+    font-family: var(--font7);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: #000;
+`;
+
+export const BannerLocation = styled.p`
+    font-family: var(--font7);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: #000;
+`;
+
+export const BannerTitle = styled.h4`
+    font-family: var(--font16);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: #000;
+`;
+
+export const BannerName = styled.p`
+    font-family: var(--font7);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: #000;
+`;
+
+
 
 export const Footer = styled.div`
   display: flex;
@@ -415,6 +531,8 @@ export const Footer = styled.div`
   height: 51px;
   background: #1E1E1F;
 `;
+
+
 
 export const FooterText = styled.div`
   display: flex;
@@ -432,10 +550,11 @@ export const FooterTextPart = styled.p`
   }
 `;
 
-export const Divider = styled.div`
-  width: 100%;
-  height: 5px;
-  background: #FFF;
-  border-radius: 2.5px;
-  margin: 8px 0;
-`;
+// export const Divider = styled.div`
+//   width: 50%;
+//   height: 5px;
+//   background: #FFF;
+//   border-radius: 2.5px;
+//   margin: 8px 0;
+//   margin-bottom: 20px;
+// `;

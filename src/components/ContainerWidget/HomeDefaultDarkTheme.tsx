@@ -13,8 +13,6 @@ import {
   ActionButtons,
   ActionButton,
   VideoSection,
-  SectionTitle,
-  ArtGallery,
   ArtItem,
   ArtImage,
   ArtTitle,
@@ -24,14 +22,21 @@ import {
   SocialIcon,
   SocialText,
   SocialArrow,
-  PersonalBanner,
   Footer,
   FooterText,
   FooterTextPart,
-  Divider,
   PlayButton,
   Container,
   VideoContainer,
+  PersonalBanner,
+  BannerTitle,
+  BannerName,
+  BannerContainer,
+  FreeEntrance,
+  BannerLocation,
+  BannerItem,
+  DataContainer,
+  BannerContainer1,
 } from './ContainerWidget.styled';
 
 import art from '../../assets/images/art-icon.png';
@@ -40,11 +45,12 @@ import Cover from '../../assets/images/Profile Cover.png';
 import avatar from '../../assets/images/IMG.png';
 
 import Loading from '../../assets/videos/PASSAGE_WEB_002.mp4';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
+
+import { saveAs } from 'file-saver';
 
 interface Artwork {
   id: number;
@@ -184,6 +190,32 @@ const HomeDefaultDarkTheme: React.FC = () => {
     },
   ];
 
+  const generateVCard = () => {
+    const vCardData = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      `FN:Olivia Baker`,
+      `N:Baker;Olivia;;;`,
+      `TITLE:artist, sculptor, blogger`,
+      `PHOTO;VALUE=URL;TYPE=JPEG:${avatar}`,
+      'END:VCARD',
+    ].join('\n');
+
+    return new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+  };
+
+  const handleCall = () => {
+    window.open('tel:+1234567890');
+    const vCard = generateVCard();
+    saveAs(vCard, 'olivia-baker.vcf');
+  };
+
+  const handleMessage = () => {
+    window.open('sms:+1234567890');
+    const vCard = generateVCard();
+    saveAs(vCard, 'olivia-baker.vcf');
+  };
+
   return (
     <MainContainer theme={theme}>
       <ProfileSection theme={theme}>
@@ -202,17 +234,17 @@ const HomeDefaultDarkTheme: React.FC = () => {
             </ProfileInfo>
 
             <ActionButtons theme={theme}>
-              <ActionButton theme={theme}>
+              <ActionButton theme={theme} onClick={handleCall}>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <path
-                    d="M20.76 15.38C19.53 15.38 18.34 15.18 17.23 14.82C17.0561 14.7611 16.8691 14.7523 16.6905 14.7948C16.5118 14.8372 16.3488 14.9291 16.22 15.06L14.65 17.03C11.82 15.68 9.17 13.13 7.76 10.2L9.71 8.54C9.98 8.26 10.06 7.87 9.95 7.52C9.58 6.41 9.39 5.22 9.39 3.99C9.39 3.45 8.94 3 8.4 3H4.94C4.4 3 3.75 3.24 3.75 3.99C3.75 13.28 11.48 21 20.76 21C21.47 21 21.75 20.37 21.75 19.82V16.37C21.75 15.83 21.3 15.38 20.76 15.38Z"
+                    d="M20.76 15.38C19.53 15.38 18.34 15.18 17.23 14.82C17.0561 14.7611 16.8691 14.7523 16.6905 14.7948C16.5118 14.8372 16.3488 14.9291 16.22 15.06L14.65 17.03C11.82 15.68 9.17 13.13 7.76 10.2L9.71 8.54C9.98 8.26 10.06 7.87 9.95 7.52C9.58 6.41 9.39 5.22 9.39 3.99C9.39 3.45 8.94 3 8.4 3H4.94C4.4 3 3.75 3.24 3.75 3.99C3.75 13.28 11.48 21 20.76 21C21.47 21 21.75 20.37 21.75 19.82V16.37C21.75 15.38 20.76 15.38Z"
                     fill="white"
                   />
                 </svg>
                 <span>Call</span>
               </ActionButton>
 
-              <ActionButton theme={theme}>
+              <ActionButton theme={theme} onClick={handleMessage}>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <path
                     d="M4.75 20C4.2 20 3.72933 19.8043 3.338 19.413C2.94667 19.0217 2.75067 18.5507 2.75 18V6C2.75 5.45 2.946 4.97933 3.338 4.588C3.73 4.19667 4.20067 4.00067 4.75 4H20.75C21.3 4 21.771 4.196 22.163 4.588C22.555 4.98 22.7507 5.45067 22.75 6V18C22.75 18.55 22.5543 19.021 22.163 19.413C21.7717 19.805 21.3007 20.0007 20.75 20H4.75ZM12.75 13L20.75 8V6L12.75 11L4.75 6V8L12.75 13Z"
@@ -227,11 +259,7 @@ const HomeDefaultDarkTheme: React.FC = () => {
       </ProfileSection>
 
       <VideoSection>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView={'auto'}
-          freeMode={true}
-        >
+        <Swiper spaceBetween={20} slidesPerView={'auto'} freeMode={true}>
           {videoData.map((video, index) => (
             <SwiperSlide key={video.id}>
               <VideoContainer>
@@ -323,7 +351,22 @@ const HomeDefaultDarkTheme: React.FC = () => {
         ))}
       </SocialLinks>
 
-      <PersonalBanner src="/PersonalBanner.png" alt="Personal Banner" />
+      <PersonalBanner>
+        <BannerContainer>
+          <BannerTitle>NEW ARTS</BannerTitle>
+          <BannerName>Olivia Baker</BannerName>
+        </BannerContainer>
+        <BannerContainer1>
+          <BannerItem>
+            <FreeEntrance>Free Entrance</FreeEntrance>
+            <BannerLocation>Museum OF modern arts, New York</BannerLocation>
+          </BannerItem> <DataContainer>
+            <p>20</p> 
+            <span>July</span>
+          </DataContainer>
+         
+        </BannerContainer1>
+      </PersonalBanner>
 
       <Footer>
         <FooterText>
@@ -331,8 +374,6 @@ const HomeDefaultDarkTheme: React.FC = () => {
           <FooterTextPart theme={theme}>Label</FooterTextPart>
         </FooterText>
       </Footer>
-
-      <Divider />
     </MainContainer>
   );
 };
