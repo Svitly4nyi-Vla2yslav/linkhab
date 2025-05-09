@@ -16,9 +16,7 @@ export const MainContainer = styled.div`
   position: relative;
 `;
 
-export const  Container = styled.div`
-width: 345px;
-`;
+
 
 export const ProfileSection = styled.div`
   width: 100%;
@@ -63,6 +61,8 @@ export const ProfileCard = styled.div`
   border-radius: 48px;
   backdrop-filter: blur(10px);
   margin : 0 auto;
+  border: none;
+
 `;
 
 export const ProfileInfo = styled.div`
@@ -134,17 +134,33 @@ export const ActionButton = styled.button`
 `;
 
 
+// Оновлені стилі
 export const VideoSection = styled.div`
   position: relative;
   border-radius: 16px;
-  width: 345px;
+  width: 100%;
+  max-width: 345px;
   height: 194px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #000;
   margin-top: 32px;
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const VideoContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 
   video {
     width: 100%;
@@ -161,6 +177,7 @@ export const VideoSection = styled.div`
   }
 `;
 
+// PlayButton залишається без змін
 interface PlayButtonProps {
   $show: boolean;
 }
@@ -197,15 +214,58 @@ export const SectionTitle = styled.p`
   line-height: 1.2;
 `;
 
+export const Container = styled.div`
+width: 100%;
+`;
+
 export const ArtGallery = styled.div`
   display: flex;
   gap: 16px;
 `;
 
 export const ArtItem = styled.div`
+border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    background: rgba(39, 38, 40, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shine 1.5s infinite;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
 `;
 
 export const ArtImage = styled.img`
@@ -221,6 +281,7 @@ export const ArtTitle = styled.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
+ padding: 0 0 8px 8px;
 `;
 
 export const ArtPrice = styled.p`
@@ -229,6 +290,7 @@ export const ArtPrice = styled.p`
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2;
+   padding: 0 0 8px 8px;
 `;
 
 export const SocialLinks = styled.div`
@@ -237,20 +299,67 @@ export const SocialLinks = styled.div`
   gap: 16px;
 `;
 
-export const SocialLink = styled.div`
+export const SocialLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 32px 12px 16px;
+  width: 347px;
+  height: 64px;
   border: 1px solid ${({ theme }) => theme.colors.borderSecondary || '#656565'};
   background: rgba(39, 38, 40, 0.7);
-  border-radius: 8px;
+  border-radius: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    background: rgba(39, 38, 40, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shine 1.5s infinite;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
 `;
 
 export const SocialIcon = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: transform 0.3s ease;
+
+  ${SocialLink}:hover & {
+    transform: translateX(4px);
+  }
 `;
 
 export const SocialText = styled.p`
@@ -259,16 +368,36 @@ export const SocialText = styled.p`
   font-size: 24px;
   font-weight: 400;
   line-height: 1.2;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  ${SocialLink}:hover & {
+    color: ${({ theme }) => theme.colors.textPrimary || '#FFF'};
+    transform: scale(1.02);
+  }
 `;
 
 export const SocialArrow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
+  border-radius: 32px;
+  width: 48px;
   height: 32px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  transition: all 0.3s ease;
+
+  ${SocialLink}:hover & {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(4px);
+
+    svg {
+      transform: translateX(2px);
+    }
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
 `;
 
 export const PersonalBanner = styled.img`

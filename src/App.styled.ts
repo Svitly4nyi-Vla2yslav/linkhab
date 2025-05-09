@@ -83,6 +83,21 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
       color: var(--secondary-color);
     }
   }
+
+  .swiper {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.swiper-slide {
+  cursor: grab;
+}
+
+.swiper-slide:active {
+  cursor: grabbing;
+}
 `;
 
 export default GlobalStyles;
