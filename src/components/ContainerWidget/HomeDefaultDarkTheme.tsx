@@ -56,8 +56,8 @@ import telegram from '../../assets/icons/telegram-icon.svg';
 import arrow from '../../assets/icons/arrow-icon.svg';
 
 import { doc, getDoc } from 'firebase/firestore';
-import { db, getTheme } from '../../firabase';
-import { darkTheme1 } from './theme';
+import { db} from '../../firabase';
+import { ThemeProvider } from 'styled-components';
 
 interface Artwork {
   id: number;
@@ -263,11 +263,12 @@ const HomeDefaultDarkTheme: React.FC = () => {
       url: 'https://youtube.com/olivia_b',
     },
   ];
-
+  console.log('Theme styles:', themeStyles);
   if (loading) return <div>Loading styles from Firestore...</div>;
   if (error) return <div className="error-message">{error}</div>;
   if (!Object.keys(themeStyles).length) return <div>No styles found</div>;
   return (
+    <ThemeProvider theme={{ styles: themeStyles }}>
     <div style={themeStyles.MainContainer}>
       {/* Profile Section */}
       <div style={themeStyles.ProfileSection}>
@@ -408,27 +409,26 @@ const HomeDefaultDarkTheme: React.FC = () => {
         ))}
       </div>
 
-      {/* Personal Banner */}
-      <div style={{ position: 'relative' }}>
-        <PersonalBanner $themeStyles={themeStyles}>
-          <div style={themeStyles.BannerContainer}>
-            <div style={themeStyles.BannerTitle}>NEW ARTS</div>
-            <div style={themeStyles.BannerName}>{profileData.name}</div>
-          </div>
-          <div style={themeStyles.BannerContainer1}>
-            <div style={themeStyles.BannerItem}>
-              <div style={themeStyles.FreeEntrance}>Free Entrance</div>
-              <div style={themeStyles.BannerLocation}>
-                Museum OF modern arts, New York
-              </div>
-            </div>
-            <div style={themeStyles.DataContainer}>
-              <p>20</p>
-              <span>July</span>
-            </div>
-          </div>
-        </PersonalBanner>
+    <div style={{ position: 'relative' }}>
+    <div style={themeStyles.PersonalBanner}>
+      <div style={themeStyles.BannerContainer}>
+        <div style={themeStyles.BannerTitle}>NEW ARTS</div>
+        <div style={themeStyles.BannerName}>{profileData.name}</div>
       </div>
+      <div style={themeStyles.BannerContainer1}>
+        <div style={themeStyles.BannerItem}>
+          <div style={themeStyles.FreeEntrance}>Free Entrance</div>
+          <div style={themeStyles.BannerLocation}>
+            Museum OF modern arts, New York
+          </div>
+        </div>
+        <div style={themeStyles.DataContainer}>
+          <p>20</p>
+          <span>July</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <div style={themeStyles.Footer}>
         <div style={themeStyles.FooterText}>
@@ -436,7 +436,7 @@ const HomeDefaultDarkTheme: React.FC = () => {
           <span style={themeStyles.FooterTextPart}>Label</span>
         </div>
       </div>
-    </div>
+    </div></ThemeProvider>
   );
 };
 

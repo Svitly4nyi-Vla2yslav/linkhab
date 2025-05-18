@@ -332,7 +332,7 @@ export const darkTheme1 = {
       justifyContent: "space-between",
       alignItems: "baseline",
       overflow: "hidden",
-      after_content: "''",
+      after_content: "",
       after_position: "absolute",
       after_top: "0",
       after_right: "0",
