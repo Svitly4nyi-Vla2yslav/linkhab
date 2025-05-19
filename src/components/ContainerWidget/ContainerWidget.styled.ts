@@ -379,36 +379,48 @@ export const SocialArrow = styled.div`
     transition: ${darkTheme1.styles.SocialArrow.svg.transition};
   }
 `;
-export const PersonalBanner = styled.div`
-  position: ${({ theme }) => theme.styles.PersonalBanner?.position || "relative"};
-  display: ${({ theme }) => theme.styles.PersonalBanner?.display || "flex"};
-  border-radius: ${({ theme }) => theme.styles.PersonalBanner?.borderRadius || "20px"};
-  padding: ${({ theme }) => theme.styles.PersonalBanner?.padding || "16px"};
-  width: ${({ theme }) => theme.styles.PersonalBanner?.width || "345px"};
-  height: ${({ theme }) => theme.styles.PersonalBanner?.height || "192px"};
-  background: ${({ theme }) => theme.styles.PersonalBanner?.background || "#fff"};
-  backdrop-filter: ${({ theme }) => theme.styles.PersonalBanner?.backdropFilter || "blur(50px)"};
-  -webkit-backdrop-filter: ${({ theme }) => theme.styles.PersonalBanner?.backdropFilter || "blur(50px)"};
-  box-shadow: ${({ theme }) => theme.styles.PersonalBanner?.boxShadow || "inset 0 1px 0 0 #fff"};
-  flex-direction: ${({ theme }) => theme.styles.PersonalBanner?.flexDirection || "column"};
-  justify-content: ${({ theme }) => theme.styles.PersonalBanner?.justifyContent || "space-between"};
-  align-items: ${({ theme }) => theme.styles.PersonalBanner?.alignItems || "baseline"};
-  overflow: ${({ theme }) => theme.styles.PersonalBanner?.overflow || "hidden"};
-  z-index: 1;
+export const PersonalBanner = styled.div<{ $themeStyles?: any }>`
+  ${({ $themeStyles }) => {
+    // Базові стилі з darkTheme1
+    const baseStyles = darkTheme1.styles.PersonalBanner;
+    // Динамічні стилі з пропсів
+    const dynamicStyles = $themeStyles?.PersonalBanner || {};
+    
+    // Об'єднуємо стилі (пріоритет у динамічних)
+    const styles = { ...baseStyles, ...dynamicStyles };
 
-  &::after {
-    content: "${({ theme }) => theme.styles.PersonalBanner?.after_content || "''"}";
-    position: ${({ theme }) => theme.styles.PersonalBanner?.after_position || "absolute"};
-    top: ${({ theme }) => theme.styles.PersonalBanner?.after_top || "0"};
-    right: ${({ theme }) => theme.styles.PersonalBanner?.after_right || "0"};
-    width: ${({ theme }) => theme.styles.PersonalBanner?.after_width || "50%"};
-    height: ${({ theme }) => theme.styles.PersonalBanner?.after_height || "100%"};
-    background: ${({ theme }) => 
-      theme.styles.PersonalBanner?.after_background || 
-      "linear-gradient(318deg, rgba(255, 0, 0, 0.85) 0%, rgba(255, 0, 98, 0) 100%)"};
-    filter: ${({ theme }) => theme.styles.PersonalBanner?.after_filter || "blur(20px)"};
-    z-index: ${({ theme }) => theme.styles.PersonalBanner?.after_zIndex || "0"};
-  }
+    return css`
+      /* Основні стилі */
+      position: ${styles.position};
+      display: ${styles.display};
+      border-radius: ${styles.borderRadius};
+      padding: ${styles.padding};
+      width: ${styles.width};
+      height: ${styles.height};
+      background: ${styles.background};
+      backdrop-filter: ${styles.backdropFilter};
+      -webkit-backdrop-filter: ${styles.backdropFilter};
+      box-shadow: ${styles.boxShadow};
+      flex-direction: ${styles.flexDirection};
+      justify-content: ${styles.justifyContent};
+      align-items: ${styles.alignItems};
+      overflow: ${styles.overflow};
+      z-index: 1;
+
+      /* Псевдоелемент ::after */
+      &::after {
+        content: " "; /* Пробіл замість пустого рядка */
+        position: ${styles.after_position};
+        top: ${styles.after_top};
+        right: ${styles.after_right};
+        width: ${styles.after_width};
+        height: ${styles.after_height};
+        background: ${styles.after_background};
+        filter: ${styles.after_filter};
+        z-index: ${styles.after_zIndex};
+      }
+    `;
+  }}
 `;
 
 

@@ -56,7 +56,7 @@ import telegram from '../../assets/icons/telegram-icon.svg';
 import arrow from '../../assets/icons/arrow-icon.svg';
 
 import { doc, getDoc } from 'firebase/firestore';
-import { db} from '../../firabase';
+import { db } from '../../firabase';
 import { ThemeProvider } from 'styled-components';
 
 interface Artwork {
@@ -269,174 +269,177 @@ const HomeDefaultDarkTheme: React.FC = () => {
   if (!Object.keys(themeStyles).length) return <div>No styles found</div>;
   return (
     <ThemeProvider theme={{ styles: themeStyles }}>
-    <div style={themeStyles.MainContainer}>
-      {/* Profile Section */}
-      <div style={themeStyles.ProfileSection}>
-        <div style={themeStyles.ProfileCover}>
-          <img
-            src={profileData.coverImage}
-            alt="Profile Cover"
-            style={themeStyles.CoverImage}
-          />
-          <div style={themeStyles.ProfileCard}>
-            <div style={themeStyles.ProfileInfo}>
-              <img
-                src={profileData.avatar}
-                alt="Profile"
-                style={themeStyles.ProfileImage}
-              />
-              <div style={themeStyles.ProfileName}>
-                {profileData.name.split(' ').map((part, i) => (
-                  <span key={i} style={themeStyles.NamePart}>
-                    {part}
-                  </span>
-                ))}
-              </div>
-              <div style={themeStyles.ProfileTitle}>{profileData.title}</div>
-            </div>
-
-            <div style={themeStyles.ActionButtons}>
-              <button
-                style={{
-                  ...themeStyles.ActionButton,
-                  ...themeStyles.ActionButtonCall,
-                }}
-                onClick={() => window.open(`tel:${profileData.phone}`)}
-              >
-                <img src={phone} alt="Phone" style={{ marginRight: '8px' }} />
-                <span>Call</span>
-              </button>
-
-              <button
-                style={{
-                  ...themeStyles.ActionButton,
-                  ...themeStyles.ActionButtonMail,
-                }}
-                onClick={() => window.open(`mailto:${profileData.email}`)}
-              >
-                <img src={mail} alt="Mail" style={{ marginRight: '8px' }} />
-                <span>Send</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Video Section */}
-      <div style={themeStyles.VideoSection}>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          freeMode
-          style={themeStyles.SwiperStyle}
-        >
-          {videoData.map((video, i) => (
-            <SwiperSlide key={video.id} style={themeStyles.SwiperSlideStyle}>
-              <div style={themeStyles.VideoContainer}>
-                <video
-                  ref={el => (videoRefs.current[i] = el)}
-                  src={video.src}
-                  onClick={() => togglePlay(i)}
-                  onPause={() =>
-                    setPlayingStates(prev => {
-                      const newStates = [...prev];
-                      newStates[i] = false;
-                      return newStates;
-                    })
-                  }
-                  onEnded={() => handleEnded(i)}
-                  controls={showControls[i]}
-                  style={themeStyles.Video}
+      <div style={themeStyles.MainContainer}>
+        {/* Profile Section */}
+        <div style={themeStyles.ProfileSection}>
+          <div style={themeStyles.ProfileCover}>
+            <img
+              src={profileData.coverImage}
+              alt="Profile Cover"
+              style={themeStyles.CoverImage}
+            />
+            <div style={themeStyles.ProfileCard}>
+              <div style={themeStyles.ProfileInfo}>
+                <img
+                  src={profileData.avatar}
+                  alt="Profile"
+                  style={themeStyles.ProfileImage}
                 />
+                <div style={themeStyles.ProfileName}>
+                  {profileData.name.split(' ').map((part, i) => (
+                    <span key={i} style={themeStyles.NamePart}>
+                      {part}
+                    </span>
+                  ))}
+                </div>
+                <div style={themeStyles.ProfileTitle}>{profileData.title}</div>
+              </div>
+
+              <div style={themeStyles.ActionButtons}>
                 <button
-                  onClick={() => togglePlay(i)}
                   style={{
-                    ...themeStyles.PlayButton,
-                    display: playingStates[i] ? 'none' : 'flex',
+                    ...themeStyles.ActionButton,
+                    ...themeStyles.ActionButtonCall,
                   }}
-                  aria-label={playingStates[i] ? 'Pause' : 'Play'}
+                  onClick={() => window.open(`tel:${profileData.phone}`)}
                 >
-                  <img src={play} alt="Play" />
+                  <img src={phone} alt="Phone" style={{ marginRight: '8px' }} />
+                  <span>Call</span>
+                </button>
+
+                <button
+                  style={{
+                    ...themeStyles.ActionButton,
+                    ...themeStyles.ActionButtonMail,
+                  }}
+                  onClick={() => window.open(`mailto:${profileData.email}`)}
+                >
+                  <img src={mail} alt="Mail" style={{ marginRight: '8px' }} />
+                  <span>Send</span>
                 </button>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* Artworks Section */}
-      <div style={themeStyles.Container}>
-        <Swiper
-          slidesOffsetBefore={12}
-          slidesOffsetAfter={12}
-          spaceBetween={12}
-          slidesPerView="auto"
-          freeMode
-        >
-          {defaultArtworks.map(artwork => (
-            <SwiperSlide key={artwork.id} style={{ width: 'auto' }}>
-              <ArtItem $themeStyles={themeStyles}>
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  style={themeStyles.ArtImage}
-                />
-                <div style={themeStyles.ArtTitle}>{artwork.title}</div>
-                <div style={themeStyles.ArtPrice}>{artwork.price}</div>
-              </ArtItem>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* Social Links */}
-      <div style={themeStyles.SocialLinks}>
-        {defaultSocialLinks.map(link => (
-          <SocialLink
-            key={link.id}
-            style={themeStyles.SocialLink}
-            $themeStyles={themeStyles}
-            onClick={() => window.open(link.url, '_blank')}
-          >
-            <div style={themeStyles.SocialIcon}>
-              {link.icon}
-              <span style={themeStyles.SocialText}>{link.text}</span>
             </div>
-            <div style={themeStyles.SocialArrow}>
-              <img src={arrow} alt="Arrow" />
-            </div>
-          </SocialLink>
-        ))}
-      </div>
-
-    <div style={{ position: 'relative' }}>
-    <div style={themeStyles.PersonalBanner}>
-      <div style={themeStyles.BannerContainer}>
-        <div style={themeStyles.BannerTitle}>NEW ARTS</div>
-        <div style={themeStyles.BannerName}>{profileData.name}</div>
-      </div>
-      <div style={themeStyles.BannerContainer1}>
-        <div style={themeStyles.BannerItem}>
-          <div style={themeStyles.FreeEntrance}>Free Entrance</div>
-          <div style={themeStyles.BannerLocation}>
-            Museum OF modern arts, New York
           </div>
         </div>
-        <div style={themeStyles.DataContainer}>
-          <p>20</p>
-          <span>July</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-      <div style={themeStyles.Footer}>
-        <div style={themeStyles.FooterText}>
-          <span style={themeStyles.FooterTextPart}>Create to</span>
-          <span style={themeStyles.FooterTextPart}>Label</span>
+        {/* Video Section */}
+        <div style={themeStyles.VideoSection}>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView="auto"
+            freeMode
+            style={themeStyles.SwiperStyle}
+          >
+            {videoData.map((video, i) => (
+              <SwiperSlide key={video.id} style={themeStyles.SwiperSlideStyle}>
+                <div style={themeStyles.VideoContainer}>
+                  <video
+                    ref={el => (videoRefs.current[i] = el)}
+                    src={video.src}
+                    onClick={() => togglePlay(i)}
+                    onPause={() =>
+                      setPlayingStates(prev => {
+                        const newStates = [...prev];
+                        newStates[i] = false;
+                        return newStates;
+                      })
+                    }
+                    onEnded={() => handleEnded(i)}
+                    controls={showControls[i]}
+                    style={themeStyles.Video}
+                  />
+                  <button
+                    onClick={() => togglePlay(i)}
+                    style={{
+                      ...themeStyles.PlayButton,
+                      display: playingStates[i] ? 'none' : 'flex',
+                    }}
+                    aria-label={playingStates[i] ? 'Pause' : 'Play'}
+                  >
+                    <img src={play} alt="Play" />
+                  </button>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Artworks Section */}
+        <div style={themeStyles.Container}>
+          <Swiper
+            slidesOffsetBefore={12}
+            slidesOffsetAfter={12}
+            spaceBetween={12}
+            slidesPerView="auto"
+            freeMode
+          >
+            {defaultArtworks.map(artwork => (
+              <SwiperSlide key={artwork.id} style={{ width: 'auto' }}>
+                <ArtItem $themeStyles={themeStyles}>
+                  <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    style={themeStyles.ArtImage}
+                  />
+                  <div style={themeStyles.ArtTitle}>{artwork.title}</div>
+                  <div style={themeStyles.ArtPrice}>{artwork.price}</div>
+                </ArtItem>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Social Links */}
+        <div style={themeStyles.SocialLinks}>
+          {defaultSocialLinks.map(link => (
+            <SocialLink
+              key={link.id}
+              style={themeStyles.SocialLink}
+              $themeStyles={themeStyles}
+              onClick={() => window.open(link.url, '_blank')}
+            >
+              <div style={themeStyles.SocialIcon}>
+                {link.icon}
+                <span style={themeStyles.SocialText}>{link.text}</span>
+              </div>
+              <div style={themeStyles.SocialArrow}>
+                <img src={arrow} alt="Arrow" />
+              </div>
+            </SocialLink>
+          ))}
+        </div>
+
+        <div style={{ position: 'relative' }}>
+          <PersonalBanner $themeStyles={themeStyles}>
+            <div style={themeStyles.PersonalBanner}>
+              <div style={themeStyles.BannerContainer}>
+                <div style={themeStyles.BannerTitle}>NEW ARTS</div>
+                <div style={themeStyles.BannerName}>{profileData.name}</div>
+              </div>
+              <div style={themeStyles.BannerContainer1}>
+                <div style={themeStyles.BannerItem}>
+                  <div style={themeStyles.FreeEntrance}>Free Entrance</div>
+                  <div style={themeStyles.BannerLocation}>
+                    Museum OF modern arts, New York
+                  </div>
+                </div>
+                <div style={themeStyles.DataContainer}>
+                  <p>20</p>
+                  <span>July</span>
+                </div>
+              </div>
+            </div>
+          </PersonalBanner>
+        </div>
+
+        <div style={themeStyles.Footer}>
+          <div style={themeStyles.FooterText}>
+            <span style={themeStyles.FooterTextPart}>Create to</span>
+            <span style={themeStyles.FooterTextPart}>Label</span>
+          </div>
         </div>
       </div>
-    </div></ThemeProvider>
+    </ThemeProvider>
   );
 };
 
