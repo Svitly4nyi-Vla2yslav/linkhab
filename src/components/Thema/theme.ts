@@ -4,7 +4,7 @@ type ExtendedCSS = React.CSSProperties & {
 };
 
 import { keyframes } from "styled-components";
-import { ThemeData } from "./HomeDefaultDarkTheme";
+import { ThemeData } from "../ContainerWidget/HomeDefaultDarkTheme";
 
 export const darkTheme1 = {
   styles: {
@@ -264,7 +264,7 @@ export const darkTheme1 = {
       overflow: "hidden",
       gap: "10px",
       transition: "all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)",
-      hover: {
+      '&:hover': {
         background: "rgba(39, 38, 40, 0.9)",
         transform: "translateY(-2px)",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
@@ -278,7 +278,7 @@ export const darkTheme1 = {
           background: "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%)",
           animation: "shine 1.5s infinite"
         }
-      },
+      } as ExtendedCSS,
       active: {
         transform: "translateY(0)",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
@@ -714,7 +714,7 @@ export const DEFAULT_THEME: ThemeData = {
         background: "rgba(39, 38, 40, 0.9)",
         transform: "translateY(-2px)",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-        before: {
+        '&::before': {
           content: "''",
           position: "absolute",
           top: "0",
@@ -834,7 +834,7 @@ export const DEFAULT_THEME: ThemeData = {
         letterSpacing: "0.01em",
         textAlign: "center",
         color: "#000"
-      } ,
+      },
       span: {
         fontFamily: "var(--font7)",
         fontWeight: "400",
@@ -897,6 +897,6 @@ export const DEFAULT_THEME: ThemeData = {
       lastChild: {
         fontWeight: "700"
       }
-      } as ExtendedCSS
-    }
-  };
+    } as ExtendedCSS
+  }
+};

@@ -7,7 +7,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firabase';
 import styled from 'styled-components';
 import { ThemeData } from '../ContainerWidget/HomeDefaultDarkTheme';
-import { DEFAULT_THEME } from '../ContainerWidget/theme';
+import { DEFAULT_THEME } from '../Thema/theme';
 
 const ThemeSwitcherContainer = styled.div`
   width: 420px;
@@ -24,7 +24,7 @@ const ThemeHeader = styled.div`
 `;
 
 const ThemeTitle = styled.span`
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   font-size: 20px;
   font-weight: 500;
 `;
@@ -43,7 +43,7 @@ const ThemeItem = styled.div<{ $isActive: boolean }>`
     $isActive ? '0 0 0 2px rgba(78, 127, 223, 0.3)' : 'none'};
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 
@@ -66,8 +66,6 @@ const ThemePreview = styled.div`
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.2);
 `;
-
-
 
 // Локальні теми
 const LOCAL_THEMES: Record<string, ThemeData> = {
@@ -144,7 +142,7 @@ const LOCAL_THEMES: Record<string, ThemeData> = {
       FreeEntrance: {},
       BannerLocation: {},
       BannerItem: {},
-      DataContainer: {}
+      DataContainer: {},
     },
   },
   blue_theme: {
@@ -219,7 +217,7 @@ const LOCAL_THEMES: Record<string, ThemeData> = {
       FreeEntrance: {},
       BannerLocation: {},
       BannerItem: {},
-      DataContainer: {}
+      DataContainer: {},
     },
   },
   purple_theme: {
@@ -294,7 +292,7 @@ const LOCAL_THEMES: Record<string, ThemeData> = {
       FreeEntrance: {},
       BannerLocation: {},
       BannerItem: {},
-      DataContainer: {}
+      DataContainer: {},
     },
   },
 };
