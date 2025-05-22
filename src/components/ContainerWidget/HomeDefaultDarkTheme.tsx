@@ -44,7 +44,7 @@ import Cover from '../../assets/images/Profile Cover.png';
 import avatar from '../../assets/images/IMG.png';
 
 import Loading from '../../assets/videos/PASSAGE_WEB_002.mp4';
-import { useEffect, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -58,6 +58,8 @@ import arrow from '../../assets/icons/arrow-icon.svg';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firabase';
 import { ThemeProvider } from 'styled-components';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import { Keyframes } from 'styled-components/dist/types';
 
 interface Artwork {
   id: number;
@@ -82,44 +84,58 @@ interface VideoData {
 export interface ThemeData {
   isDefault?: boolean;
   styles: {
-    MainContainer?: any;
-    ProfileSection?: any;
-    ProfileCover?: any;
-    ProfileCard?: any;
-    ProfileInfo?: any;
-    ProfileName?: any;
-    NamePart?: any;
-    ProfileTitle?: any;
-    ActionButtons?: any;
-    ActionButton?: any;
-    VideoSection?: any;
-    ArtItem?: React.CSSProperties;
-    ArtTitle?: any;
-    ArtPrice?: any;
-    SocialLinks?: any;
-    SocialLink?: React.CSSProperties;
-    SocialIcon?: any;
-    SocialText?: any;
-    SocialArrow?: any;
-    Footer?: any;
-    FooterText?: any;
-    FooterTextPart?: any;
-    PlayButton?: any;
-    Container?: any;
-    VideoContainer?: any;
-    PersonalBanner?: any;
-    BannerTitle?: any;
-    BannerName?: any;
-    BannerContainer?: any;
-    FreeEntrance?: any;
-    BannerLocation?: any;
-    BannerItem?: any;
-    DataContainer?: any;
-    BannerContainer1?: any;
-    [key: string]: any;
+    MainContainer: CSSProperties;
+    ProfileSection: CSSProperties;
+    ProfileCover: CSSProperties;
+    ProfileCard: CSSProperties;
+    ProfileInfo: CSSProperties;
+    ProfileName: CSSProperties;
+    NamePart: CSSProperties;
+    ProfileTitle: CSSProperties;
+    ActionButtons: CSSProperties;
+    ActionButton: CSSProperties;
+    VideoSection: CSSProperties;
+    ArtItem: CSSProperties & {
+      '&:hover'?: CSSProperties;
+      '&:active'?: CSSProperties;
+      '&::before'?: CSSProperties;
+    };
+    ArtTitle: CSSProperties;
+    ArtPrice: CSSProperties;
+    SocialLinks: CSSProperties;
+    SocialLink: CSSProperties & {
+      '&:hover'?: CSSProperties;
+      '&:active'?: CSSProperties;
+      '&::before'?: CSSProperties;
+    };
+    SocialIcon: CSSProperties;
+    SocialText: CSSProperties;
+    SocialArrow: CSSProperties;
+    Footer: CSSProperties;
+    FooterText: CSSProperties;
+    FooterTextPart: CSSProperties;
+    PlayButton: CSSProperties;
+    Container: CSSProperties;
+    VideoContainer: CSSProperties;
+    PersonalBanner: CSSProperties;
+    BannerTitle: CSSProperties;
+    BannerName: CSSProperties;
+    BannerContainer: CSSProperties;
+    FreeEntrance: CSSProperties;
+    BannerLocation: CSSProperties;
+    BannerItem: CSSProperties;
+    DataContainer: CSSProperties;
+    BannerContainer1: CSSProperties;
+       [key: string]: CSSProperties & {
+      '&:hover'?: CSSProperties;
+      '&:active'?: CSSProperties;
+      '&::before'?: CSSProperties;
+    };
+  };
+  keyframes?: {
+    [key: string]: Keyframes;
   };
 }
-
 interface ProfileData {
   name: string;
   title: string;
@@ -128,15 +144,70 @@ interface ProfileData {
   phone?: string;
   email?: string;
 }
-interface ThemeStyles {
-  [key: string]: React.CSSProperties;
+
+interface BaseThemeStyles {
+  [key: string]: CSSProperties & {
+    '&:hover'?: CSSProperties;
+    '&:active'?: CSSProperties;
+    '&::before'?: CSSProperties;
+  };
 }
+interface ThemeStyles {
+  [key: string]: CSSProperties & {
+    '&:hover'?: CSSProperties & {
+      '&::before'?: CSSProperties & {
+        animation?: string;
+      };
+    };
+    '&:active'?: CSSProperties;
+    '&::after'?: CSSProperties;
+    '&::-webkit-scrollbar'?: CSSProperties;
+  };
+}const defaultTheme: ThemeData = {
+  isDefault: true,
+  styles: {
+    MainContainer: {},
+    ProfileSection: {},
+    ProfileCover: {},
+    ProfileCard: {},
+    ProfileInfo: {},
+    ProfileName: {},
+    NamePart: {},
+    ProfileTitle: {},
+    ActionButtons: {},
+    ActionButton: {},
+    VideoSection: {},
+    ArtItem: {},
+    ArtTitle: {},
+    ArtPrice: {},
+    SocialLinks: {},
+    SocialLink: {},
+    SocialIcon: {},
+    SocialText: {},
+    SocialArrow: {},
+    Footer: {},
+    FooterText: {},
+    FooterTextPart: {},
+    PlayButton: {},
+    Container: {},
+    VideoContainer: {},
+    PersonalBanner: {},
+    BannerTitle: {},
+    BannerName: {},
+    BannerContainer: {},
+    FreeEntrance: {},
+    BannerLocation: {},
+    BannerItem: {},
+    DataContainer: {},
+    BannerContainer1: {}
+  },
+};
 
 const HomeDefaultDarkTheme: React.FC = () => {
-  const [themeStyles, setThemeStyles] = useState<ThemeStyles>({});
+  const [themeStyles, setThemeStyles] = useState<ThemeData['styles']>(defaultTheme.styles);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(defaultTheme);
   // Ініціалізація станів
   const [profileData] = useState({
     name: 'Olivia Baker',
@@ -267,8 +338,26 @@ const HomeDefaultDarkTheme: React.FC = () => {
   if (loading) return <div>Loading styles from Firestore...</div>;
   if (error) return <div className="error-message">{error}</div>;
   if (!Object.keys(themeStyles).length) return <div>No styles found</div>;
+
+  const handleThemeChange = (theme: ThemeData) => {
+    setCurrentTheme(theme);
+    setThemeStyles(theme.styles);
+  };
+
   return (
-    <ThemeProvider theme={{ styles: themeStyles }}>
+   <ThemeProvider theme={{ 
+  styles: themeStyles, 
+  keyframes: currentTheme?.keyframes || {} 
+}}>
+      <ThemeSwitcher
+        onThemeChange={handleThemeChange}
+        currentTheme={
+          currentTheme || {
+            isDefault: true,
+            styles: themeStyles as ThemeData['styles'],
+          }
+        }
+      />
       <div style={themeStyles.MainContainer}>
         {/* Profile Section */}
         <div style={themeStyles.ProfileSection}>

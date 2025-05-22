@@ -1,10 +1,5 @@
-
-
-
 import styled, { css, keyframes } from "styled-components";
 import { darkTheme1 } from "./theme";
-
-
 
 export const MainContainer = styled.div`
   display: ${darkTheme1.styles.MainContainer.display};
