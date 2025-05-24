@@ -362,11 +362,7 @@ const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(defaultTheme)
         {/* Profile Section */}
         <div style={themeStyles.ProfileSection}>
           <div style={themeStyles.ProfileCover}>
-            <img
-              src={profileData.coverImage}
-              alt="Profile Cover"
-              style={themeStyles.CoverImage}
-            />
+
             <div style={themeStyles.ProfileCard}>
               <div style={themeStyles.ProfileInfo}>
                 <img

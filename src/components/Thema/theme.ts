@@ -1,4 +1,6 @@
 // theme.ts
+import coverUrl from "../../assets/images/Profile Cover.png"
+
 type ExtendedCSS = React.CSSProperties & {
   [key: string]: any; // <- дозволяє будь-які псевдоселектори та custom властивості
 };
@@ -29,7 +31,10 @@ export const darkTheme1 = {
       width: "100%",
       maxWidth: "393px",
       position: "relative",
-      marginBottom: "180px"
+      marginBottom: "180px",
+      backgroundImage: `url(${coverUrl})`,
+      height: "100%",
+      objectFit: "cover"
     },
     ProfileCover: {
       position: "relative",
@@ -479,7 +484,10 @@ export const DEFAULT_THEME: ThemeData = {
       width: "100%",
       maxWidth: "393px",
       position: "relative",
-      marginBottom: "180px"
+      marginBottom: "180px",
+         backgroundImage: `url(${coverUrl})`,
+      height: "100%",
+      objectFit: "cover"
     },
     ProfileCover: {
       position: "relative",
@@ -487,13 +495,13 @@ export const DEFAULT_THEME: ThemeData = {
       height: "280px",
       borderRadius: "0 0 24px 24px"
     },
-    CoverImage: {
-      position: "absolute",
-      top: "0",
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    },
+    // CoverImage: {
+    //   position: "absolute",
+    //   top: "0",
+    //   width: "100%",
+    //   height: "100%",
+    //   objectFit: "cover"
+    // },
 
     ProfileCard: {
       position: "absolute",
